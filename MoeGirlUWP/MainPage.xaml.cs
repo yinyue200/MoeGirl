@@ -330,6 +330,8 @@ namespace MoeGirl
         private void hbRate_Click(object sender, RoutedEventArgs e)
         {
             //TODO:评价
+            Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://review/?ProductId=9NBLGGH4XCP3"));
+
         }
 
         private void hbMoreACG_Click(object sender, RoutedEventArgs e)
