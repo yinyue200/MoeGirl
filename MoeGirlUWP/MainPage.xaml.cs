@@ -337,5 +337,14 @@ namespace MoeGirl
             Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://search/?query=ACG"));
         }
 
+        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.System.Launcher.LaunchUriAsync(new Uri("https://www.windowsphone.com/zh-cn/store/app/%E8%90%8C%E5%A8%98%E7%99%BE%E7%A7%91/194aa2ab-f4e3-4762-9f88-6edf23cdc50d"));
+        }
+
+        private void HyperlinkButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/yinyue200/MoeGirl"));
+        }
     }
 }

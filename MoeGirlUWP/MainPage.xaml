@@ -109,8 +109,8 @@
                         <HyperlinkButton Grid.Row="3" Grid.Column="1" x:Name="hbMoreACG" HorizontalAlignment="Left" FontSize="20" Foreground="#FF3F3F3F" Content="更多ACG应用" Click="hbMoreACG_Click"/>
                         <StackPanel Grid.ColumnSpan="2" Grid.Row="4">
                             <TextBlock  Foreground="#FF3F3F3F" TextWrapping="Wrap">特别说明，该版本是yinyue200根据原作者@暗影吉他手 的WP8.1版本简单修改出来的UWP版本，BUG可能非常多，</TextBlock>
-                            <HyperlinkButton>下载原版本</HyperlinkButton>
-                            <HyperlinkButton>GITHUB</HyperlinkButton>
+                            <HyperlinkButton Click="HyperlinkButton_Click">下载原版本</HyperlinkButton>
+                            <HyperlinkButton Click="HyperlinkButton_Click_1">GITHUB</HyperlinkButton>
                         </StackPanel>
                     </Grid>
                 </PivotItem>
