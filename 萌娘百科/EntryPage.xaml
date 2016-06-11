@@ -1,0 +1,94 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="MoeGirl.EntryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.ForegroundColor="Black" shell:SystemTray.BackgroundColor="Transparent" shell:SystemTray.Opacity="0">
+
+    <Grid x:Name="LayoutRoot" Background="#FFF3F3F3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" Margin="20,0,0,0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
+            <TextBlock x:Name="tbTitle" Margin="0 30 0 0" FontWeight="Bold" FontSize="42" Foreground="Black"/>
+        </ScrollViewer>
+
+        <controls:Pivot x:Name="pivot" Grid.Row="1" SelectionChanged="pivot_SelectionChanged">
+            <controls:PivotItem x:Name="pi1">
+                <controls:PivotItem.Header>
+                    <TextBlock FontSize="22" Margin="0 0 0 -20" Foreground="#FF333333" Text="基本资料"/>
+                </controls:PivotItem.Header>
+
+                <ScrollViewer x:Name="svBasic" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+                    <Grid x:Name="gridBasic" MinWidth="450" VerticalAlignment="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="300"/>
+                            <RowDefinition Height="12"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" toolkit:TiltEffect.IsTiltEnabled="True">
+                            <Image x:Name="imgCover" Stretch="Uniform" ImageFailed="imgCover_ImageFailed" ImageOpened="imgCover_ImageOpened">
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu>
+                                        <toolkit:MenuItem x:Name="miSavePic" Header="保存图片" IsEnabled="False" Click="menuSavePic_Clicked"/>
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
+                            </Image>
+                        </Grid>
+                        <TextBlock x:Name="tbBasic" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Foreground="Black" Text="少女解析中…"/>
+                    </Grid>
+                </ScrollViewer>
+            </controls:PivotItem>
+
+            <controls:PivotItem x:Name="pi2">
+                <controls:PivotItem.Header>
+                    <TextBlock FontSize="22" Margin="0 0 0 -20" Foreground="#FF333333" Text="详细介绍"/>
+                </controls:PivotItem.Header>
+
+                <phone:WebBrowser x:Name="wbDetails" IsScriptEnabled="True" MouseMove="wbDetails_MouseMove" MouseLeftButtonUp="wbDetails_MouseLeftButtonUp"  Navigating="wbDetails_Navigating" NavigationFailed="wbDetails_NavigationFailed"
+                                  ScriptNotify="wbDetails_ScriptNotify">
+                    <toolkit:GestureService.GestureListener>
+                        <toolkit:GestureListener Flick="wbDetails_Flick" />
+                    </toolkit:GestureService.GestureListener>
+                </phone:WebBrowser>
+            </controls:PivotItem>
+
+            <controls:PivotItem x:Name="pi3">
+                <controls:PivotItem.Header>
+                    <TextBlock FontSize="22" Margin="0 0 0 -20" Foreground="#FF333333" Text="相关条目"/>
+                </controls:PivotItem.Header>
+
+                <ScrollViewer x:Name="svRelated" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+                    <Grid x:Name="gridRelated" VerticalAlignment="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock x:Name="tbRelated" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Foreground="Black" Text="少女解析中…"/>
+                    </Grid>
+                </ScrollViewer>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="False" Mode="Minimized" Opacity="0.7">
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

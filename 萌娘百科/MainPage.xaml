@@ -1,0 +1,136 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="MoeGirl.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:controlsToolkit="clr-namespace:System.Windows.Controls"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.ForegroundColor="Black" shell:SystemTray.BackgroundColor="Transparent" shell:SystemTray.Opacity="0">
+
+    <Grid x:Name="LayoutRoot" Background="#FFF3F3F3">
+        <Grid x:Name="gridBackground">
+            <controls:Panorama x:Name="panorama" SelectionChanged="panorama_SelectionChanged">
+                <controls:Panorama.Title>
+                    <TextBlock x:Name="tbAppTitle" FontSize="24" Text="萌娘百科 万物皆可萌的百科全书" Margin="15 68 0 0" FontFamily="Arial Black" Foreground="#FF0074f9"/>
+                </controls:Panorama.Title>
+                <controls:Panorama.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock FontSize="48" Margin="0 0 0 -20" Foreground="Black" Text="{Binding}"/>
+                    </DataTemplate>
+                </controls:Panorama.HeaderTemplate>
+
+                <!--<controls:PanoramaItem x:Name="piNewsBox" Header="你知道吗~？">
+                    <Grid>
+                        <ListBox x:Name="lbNewsBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionChanged="lbNewsBox_SelectionChanged"
+                                 >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Margin="5" toolkit:TiltEffect.IsTiltEnabled="True" HorizontalAlignment="Left" Foreground="#FF0B0080" TextWrapping="Wrap" Text="{Binding Title}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </controls:PanoramaItem>-->
+
+                <controls:PanoramaItem x:Name="piLatest" Header="最新条目">
+                    <Grid>
+                        <ListBox x:Name="lbLatest" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <controlsToolkit:BalancedWrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <HyperlinkButton x:Name="hbLatest" toolkit:TiltEffect.IsTiltEnabled="True" Margin="5" Foreground="#FF0B0080" Content="{Binding Title}" Click="hbLatest_Click"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </controls:PanoramaItem>
+
+                <controls:PanoramaItem x:Name="piSearch" Header="搜索">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle x:Name="rectSearch" Grid.Row="0" Fill="Black" Opacity="0.5" Margin="12" Visibility="Collapsed"/>
+                        <toolkit:PhoneTextBox x:Name="tboxSearch" Grid.Row="0" Hint="请输入搜索内容" InputScope="Search" KeyDown="tboxSearch_KeyDown" GotFocus="tboxSearch_GotFocus" IsHitTestVisible="False"/>
+
+                        <Grid x:Name="gridStats"  Grid.Row="1" Margin="12 0 5 5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock x:Name="tbTotal" Grid.Column="0" HorizontalAlignment="Left" FontSize="16" Foreground="#FF333333"/>
+                        </Grid>
+
+                        <TextBlock x:Name="tbSearch" Margin="12 0 0 0" Grid.Row="2" VerticalAlignment="Top" Foreground="Red" Visibility="Collapsed"/>
+                        <ListBox x:Name="lbSearch" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="12 0 0 5" toolkit:TiltEffect.IsTiltEnabled="True">
+                                        <HyperlinkButton x:Name="hbSearch" Foreground="#FF0B0080" Content="{Binding Title}" Click="hbSearch_Click"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </controls:PanoramaItem>
+
+                <controls:PanoramaItem x:Name="piAbout" Header="关于">
+                    <Grid Margin="15 0 0 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Width="150" Height="150" Source="/Resources/2013logo.png"/>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Grid.Row="0" Grid.Column="1" Margin="12 0 0 0" VerticalAlignment="Center" Foreground="#FF3F3F3F" Text="萌娘百科客户端"/>
+                            <TextBlock x:Name="tbVersion" Grid.Row="2" Grid.Column="1" Margin="3 0 0 0" VerticalAlignment="Center" Foreground="#FF3F3F3F"/>
+                        </StackPanel>
+
+                        <HyperlinkButton Grid.Row="1" Grid.Column="1" NavigateUri="http://zh.moegirl.org" TargetName="_blank" FontSize="20" Foreground="#FF3F3F3F" 
+                                         HorizontalAlignment="Left">http://zh.moegirl.org</HyperlinkButton>
+
+                        <HyperlinkButton Grid.Row="2" Grid.Column="1" x:Name="hbRate" HorizontalAlignment="Left" FontSize="20" Foreground="#FF3F3F3F" Content="打分&amp;评论" Click="hbRate_Click"/>
+
+                        <HyperlinkButton Grid.Row="3" Grid.Column="1" x:Name="hbMoreACG" HorizontalAlignment="Left" FontSize="20" Foreground="#FF3F3F3F" Content="更多ACG应用" Click="hbMoreACG_Click"/>
+
+                        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 12 0 0" VerticalAlignment="Top" Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Foreground="#FF3F3F3F">作者:</TextBlock>
+                            <HyperlinkButton NavigateUri="http://weibo.com/cotaku39" TargetName="_blank" FontSize="20" Foreground="#FF3F3F3F" HorizontalAlignment="Left">@暗影吉他手</HyperlinkButton>
+                        </StackPanel>
+
+                    </Grid>
+                </controls:PanoramaItem>
+            </controls:Panorama>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
