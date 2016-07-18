@@ -82,7 +82,13 @@
     </Grid>
 
     <bsp:BasicPage.BottomAppBar>
-        <CommandBar Visibility="Collapsed" Opacity="0.7">
+        <CommandBar x:Name="appbar" Visibility="Collapsed" Opacity="0.7" ClosedDisplayMode="Minimal">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Click="menuWebView_Click">在浏览器中阅读条目</AppBarButton>
+                <AppBarButton Click="AppBarButton_Click">刷新详细介绍</AppBarButton>
+                <AppBarButton Click="menuShare_Click">分享条目</AppBarButton>
+                <!-- <AppBarButton>发送问题报告</AppBarButton>-->
+            </CommandBar.SecondaryCommands>
         </CommandBar>
     </bsp:BasicPage.BottomAppBar>
 </bsp:BasicPage>

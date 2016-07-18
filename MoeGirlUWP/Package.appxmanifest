@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="937d6246-e471-43d9-adc7-df0a6ba49b5a" Publisher="CN=yinyu" Version="1.0.0.0" />
+  <Identity Name="28471.UWPBETA" Publisher="CN=98718F25-8EB8-43A2-B5FE-108FB92BA328" Version="0.0.1.0" />
   <mp:PhoneIdentity PhoneProductId="937d6246-e471-43d9-adc7-df0a6ba49b5a" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>MoeGirlUWP</DisplayName>
-    <PublisherDisplayName>yinyu</PublisherDisplayName>
+    <DisplayName>萌娘百科 UWPBETA</DisplayName>
+    <PublisherDisplayName>殷越</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>

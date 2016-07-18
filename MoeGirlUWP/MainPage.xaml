@@ -29,7 +29,7 @@
 
                 <PivotItem x:Name="piLatest" Header="最新条目">
                     <Grid>
-                        <ListBox x:Name="lbLatest" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                        <ListBox x:Name="lbLatest" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="{x:Null}">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <controlsToolkit:BalancedWrapPanel/>
@@ -68,7 +68,7 @@
                         </Grid>
 
                         <TextBlock x:Name="tbSearch" Margin="12 0 0 0" Grid.Row="2" VerticalAlignment="Top" Foreground="Red" Visibility="Collapsed"/>
-                        <ListBox x:Name="lbSearch" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <ListBox x:Name="lbSearch" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="{x:Null}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Margin="12 0 0 5">

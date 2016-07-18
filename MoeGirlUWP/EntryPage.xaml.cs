@@ -883,7 +883,7 @@ namespace MoeGirl
                 }*/
             }
         }
-        private void menuWebView_Click(object sender, EventArgs e)
+        private void menuWebView_Click(object sender, RoutedEventArgs e)
         {
             string url = "http://zh.moegirl.org/" + WebUtility.UrlEncode(_href);
             try
@@ -899,16 +899,24 @@ namespace MoeGirl
             wbDetails.NavigateToString(_wbStr);
         }*/
 
-        private void menuShare_Click(object sender, EventArgs e)
+        private void menuShare_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                /*ShareLinkTask slt = new ShareLinkTask();
-                string url = "http://zh.moegirl.org/" + WebUtility.UrlEncode(_href);
-                slt.LinkUri = new Uri(url, UriKind.Absolute);
-                slt.Title = _title;
-                slt.Message = string.Format("萌娘百科条目分享：{0}\n——发送自萌娘百科WP8客户端", _title);
-                slt.Show();*/
+                var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.GetForCurrentView();
+                Windows.Foundation.TypedEventHandler<Windows.ApplicationModel.DataTransfer.DataTransferManager, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs> act2 = null;
+                Windows.Foundation.TypedEventHandler<Windows.ApplicationModel.DataTransfer.DataTransferManager, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs> act = (Windows.ApplicationModel.DataTransfer.DataTransferManager sender1, Windows.ApplicationModel.DataTransfer.DataRequestedEventArgs args) =>
+                {
+                    Windows.ApplicationModel.DataTransfer.DataRequest request = args.Request;
+                    request.Data.Properties.Title = _title;
+                    string url = "http://zh.moegirl.org/" + WebUtility.UrlEncode(_href);
+                    request.Data.SetWebLink(new Uri(url, UriKind.Absolute));
+                    request.Data.SetText(string.Format("萌娘百科条目分享：{0}\n——发送自萌娘百科 UWPBETA客户端", _title));
+                    dataTransferManager.DataRequested -= act2;
+                };
+                act2 = act;
+                dataTransferManager.DataRequested += act2;
+                Windows.ApplicationModel.DataTransfer.DataTransferManager.ShowShareUI();
             }
             catch { }
         }
@@ -933,6 +941,11 @@ namespace MoeGirl
         private void wbDetails_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
             pivot.SelectedIndex = e.Cumulative.Translation.X < 0 ? 2 : 0;
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            wbDetails.Refresh();
         }
     }
 }
